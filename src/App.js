@@ -26,7 +26,7 @@ function App() {
     <div>
       {
         posts.products?.map((elem) => {
-          return (<Post title={elem.title} description={elem.description} />)
+          return (<Post elem={elem}  />)
         })
       }
     </div>
