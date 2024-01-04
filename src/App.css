@@ -35,6 +35,7 @@
 
 .title {
   margin-top: 15px;
+  font-weight: bold;
 }
 
 .description {
@@ -98,10 +99,19 @@
 .reactions {
   height: 50px;
 }
-.comment-section{
+
+.comment-section {
   display: flex;
 }
-.input{
+
+.input {
   margin-top: 5px;
   height: 40px;
+  width: 82%;
+  border-radius: 20px;
+  background-color: rgb(234, 234, 234);
+  outline: none;
+  border: 1px solid rgb(145, 145, 145);
+  padding-left: 20px;
+  font-weight: bold;
 }

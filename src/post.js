@@ -21,7 +21,6 @@ function Post({ elem }) {
         setModalOpen(false);
     };
 
-
     return (
 
         <div div className='main' >
@@ -31,6 +30,7 @@ function Post({ elem }) {
                 <div className='upper-sec'>
                     <img className='img' src={elem.thumbnail} height={'40px'} width={"40px"} />
                     <h5 className='title'>{elem.title}</h5>
+
                 </div>
 
 
@@ -59,14 +59,18 @@ function Post({ elem }) {
                     <div className='box'><img className='icons' src={Comment} alt='' /></div>
                     <div className='box'><img className='icons' src={Share} alt='' /></div>
 
-                    <hr></hr> 
+                    <hr></hr>
                     <div className='modal-container' onMouseLeave={() => setModalOpen(false)}>
                     </div>
                 </div>
-                
+                    <hr className='line'></hr>
+
                 <div className='comment-section'>
                     <img className='img' src={elem.thumbnail} height={'40px'} width={"40px"} alt='' />
-                    <input className='input' />
+                    <input
+                        className='input'
+                        placeholder='Write a public Comment...'
+                    />
                 </div>
 
 
