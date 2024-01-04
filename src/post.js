@@ -1,20 +1,25 @@
-import React from 'react'
-import FBCollage from "react-fb-collage";
+import React, { useState } from 'react'
+import FbImageLibrary from 'react-fb-image-grid'
+import LikeModal from './LikeModal'
+import Like from './Assets/download.png'
+import Comment from './Assets/comment.png'
+import Share from './Assets/share.png'
+
+
 import './App.css'
 
-function Post({elem}) {
+function Post({ elem }) {
 
+    const [isModalOpen, setModalOpen] = useState(false);
+    const handleMouseEnter = () => {
+        setTimeout(() => {
+            setModalOpen(true);
+        }, 300); // 300 milliseconds delay
+    };
 
-   
-    const images = [
-        "https://cdn-img1.imgworlds.com/assets/86b6bc23-1127-4c7f-b264-9594084176fe.png",
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png",
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png",
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png",
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png",
-    ];
-
-
+    const handleMouseLeave = () => {
+        setModalOpen(false);
+    };
 
 
     return (
@@ -24,38 +29,53 @@ function Post({elem}) {
             <div className='main-post'>
 
                 <div className='upper-sec'>
-                    <img className='img' src={'https://scontent.fkhi2-2.fna.fbcdn.net/v/t39.30808-6/415014582_365854976167123_7047827629196274610_n.jpg?stp=dst-jpg_p843x403&_nc_cat=1&ccb=1-7&_nc_sid=3635dc&_nc_ohc=PeuRSv_STq4AX_9r3mW&_nc_ht=scontent.fkhi2-2.fna&oh=00_AfAHfXp6gTqyj9uWnbRtKx_3tRlqyOz1Od-WJnqDRJq8aw&oe=659A955A'} />
+                    <img className='img' src={elem.thumbnail} height={'40px'} width={"40px"} />
                     <h5 className='title'>{elem.title}</h5>
                 </div>
 
+
                 <div className='description'>
                     <p className='text'>{elem.description}</p>
+                    <hr className='line'></hr>
                 </div>
 
                 <div className='img-grid'>
-                    <FBCollage
-                        style={{ background: "black" }}
-                        images={images}
-                        height={"150"}
-                        width={"100%"}
-                        borderRadius={10}
-                        spacing={1}
+                    <FbImageLibrary
+                        images={elem.images}
                     />
+                    <hr className='line'></hr>
                 </div>
 
                 <div className='lower-sec'>
+                    {isModalOpen && <LikeModal />}
+                    <div
+                        className='box'
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                    >
+                        <img className='icons' src={Like} alt='' />
+                    </div>
 
-                    <div className='box'><p className='icons'><i className="uil uil-thumbs-up"></i></p> </div>
-                    <div className='box'><p className='icons'><i className="uil uil-comment-alt"></i></p></div>
-                    <div className='box'><p className='icons'><i className="uil uil-share"></i></p></div>
+                    <div className='box'><img className='icons' src={Comment} alt='' /></div>
+                    <div className='box'><img className='icons' src={Share} alt='' /></div>
 
+                    <hr></hr> 
+                    <div className='modal-container' onMouseLeave={() => setModalOpen(false)}>
+                    </div>
                 </div>
+                
+                <div className='comment-section'>
+                    <img className='img' src={elem.thumbnail} height={'40px'} width={"40px"} alt='' />
+                    <input className='input' />
+                </div>
+
+
 
 
             </div>
 
 
-        </div>
+        </div >
 
     )
 }

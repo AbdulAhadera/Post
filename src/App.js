@@ -15,6 +15,7 @@ function App() {
         // Set the entire data object as post data
         setPosts(data);
         console.log(posts);
+        console.log(data)
       })
       .catch(error => console.log(error))
 
